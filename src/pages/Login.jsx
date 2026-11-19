@@ -29,7 +29,7 @@ export default function Login() {
 
     dispatch({
       type: "login",
-      payload: false,
+      payload: { status: true, user: findUser },
     });
 
     e.target.reset();
