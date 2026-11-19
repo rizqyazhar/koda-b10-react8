@@ -8,9 +8,8 @@ export default function EditProfile() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!state.loggedIn) navigate("/");
+    if (!state.loggedIn) navigate("/login");
   }, [state.loggedIn, navigate]);
 
-  // if (!state.loggedIn)
   return <h1>{state.loggedIn}</h1>;
 }
