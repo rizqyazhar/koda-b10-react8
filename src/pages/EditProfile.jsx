@@ -2,6 +2,7 @@ import { useNavigate } from "react-router";
 import { AuthContextReducer } from "../contexts/contextsReducer/contextReducer";
 import { useContext, useEffect, useState } from "react";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
+import { LuLogOut } from "react-icons/lu";
 
 export default function EditProfile() {
   const { state, dispatch } = useContext(AuthContextReducer);
@@ -35,6 +36,12 @@ export default function EditProfile() {
     });
   };
 
+  const handleLogout = () => {
+    dispatch({
+      type: "logout",
+    });
+  };
+
   useEffect(() => {
     if (!state?.loggedIn?.status) navigate("/login");
   }, [state?.loggedIn?.status, navigate]);
@@ -44,6 +51,12 @@ export default function EditProfile() {
       <h1 className='text-4xl text-stone-100'>
         Welcome, {state?.loggedIn.user?.username}
       </h1>
+      <div className='flex items-center gap-3'>
+        <p className='text-stone-100'>Logout?</p>
+        <button onClick={handleLogout} type='button'>
+          <LuLogOut className='text-stone-100 cursor-pointer' />
+        </button>
+      </div>
       <form
         onSubmit={handleSubmit}
         className='w-1/4 p-5 bg-stone-700 border border-stone-100 rounded-lg flex flex-col gap-5'>

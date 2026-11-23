@@ -29,6 +29,12 @@ export default function AuthContextReducerProvider({ children }) {
             loggedIn: { status: payload.status, user: payload.user },
           };
 
+        case "logout":
+          return {
+            ...prevState,
+            loggedIn: { status: false, user: null },
+          };
+
         case "update":
           return {
             ...prevState,
