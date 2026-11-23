@@ -1,6 +1,6 @@
 # Minitask react8
 
-Implement react redux context in login, register and update profile
+Implement react context reducer in login, register and update profile
 
 ## Demo
 
