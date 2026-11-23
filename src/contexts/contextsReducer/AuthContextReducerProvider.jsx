@@ -39,8 +39,22 @@ export default function AuthContextReducerProvider({ children }) {
           return {
             ...prevState,
             users: prevState.users.map((user) =>
-              user.id === payload.id ? { ...user, payload } : user,
+              user.id === payload.id
+                ? {
+                    ...user,
+                    username: payload.username,
+                    password: payload.password,
+                  }
+                : user,
             ),
+            loggedIn: {
+              ...prevState.loggedIn,
+              user: {
+                id: payload.id,
+                username: payload.username,
+                password: payload.password,
+              },
+            },
           };
 
         default:

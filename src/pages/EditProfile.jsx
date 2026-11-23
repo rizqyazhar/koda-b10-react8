@@ -7,31 +7,37 @@ import { LuLogOut } from "react-icons/lu";
 export default function EditProfile() {
   const { state, dispatch } = useContext(AuthContextReducer);
   const [showPassword, setShowPassword] = useState(false);
-  const [passwordChange, setPasswordChange] = useState(
-    state?.loggedIn.user?.password,
-  );
-  const [usernameChange, setUsernameChange] = useState(
-    state?.loggedIn.user?.username,
-  );
+  // const [passwordChange, setPasswordChange] = useState(
+  //   state?.loggedIn.user?.password,
+  // );
+  // const [usernameChange, setUsernameChange] = useState(
+  //   state?.loggedIn.user?.username,
+  // );
 
   const navigate = useNavigate();
 
-  const handlePasswordChange = (e) => {
-    setPasswordChange(e.target.value);
-  };
+  // const handlePasswordChange = (e) => {
+  //   setPasswordChange(e.target.value);
+  // };
 
-  const handleUsernameChange = (e) => {
-    setUsernameChange(e.target.value);
-  };
+  // const handleUsernameChange = (e) => {
+  //   setUsernameChange(e.target.value);
+  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const formData = new FormData(e.target);
+
+    const usernameInput = formData.get("username");
+    const passwordInput = formData.get("password");
+
     dispatch({
       type: "update",
       payload: {
         id: state.loggedIn.user.id,
-        username: usernameChange,
-        password: passwordChange,
+        username: usernameInput,
+        password: passwordInput,
       },
     });
   };
@@ -87,11 +93,9 @@ export default function EditProfile() {
               Username
             </label>
             <input
-              onChange={handleUsernameChange}
               type='text'
               id='username'
               name='username'
-              value={usernameChange}
               placeholder='Masukkan username'
               className='px-4 py-2 outline-none border border-stone-100 rounded-sm text-stone-50 overflow-hidden'
             />
@@ -104,13 +108,11 @@ export default function EditProfile() {
             </label>
             <div className='flex justify-between items-center px-4 py-2 border border-stone-100 rounded-sm text-stone-50 overflow-hidden'>
               <input
-                onChange={handlePasswordChange}
                 type={showPassword ? "text" : "password"}
                 id='password'
                 name='password'
                 placeholder='Masukkan password'
                 autoComplete='off'
-                value={passwordChange}
                 className='w-full outline-none border-none'
               />
               <button
