@@ -41,7 +41,13 @@ export default function AuthContextReducerProvider({ children }) {
           prevState;
       }
     },
-    { users: [], loggedIn: false },
+    {
+      users: [],
+      loggedIn: {
+        status: false,
+        user: null,
+      },
+    },
   );
   return (
     <AuthContextReducer.Provider value={{ state, dispatch }}>
